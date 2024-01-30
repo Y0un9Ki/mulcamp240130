@@ -20,27 +20,30 @@ def main():
         dpname = df2.loc[df2['department_id']==dpid,['department']]
         st.write('선택한 departments :', dpname)
         st.header("찾는 물건의 이름")
-        dpproduct = st.selectbox("찾을 물건의 이름",df1.loc[df1['department_id']==dpid, 'product_name'])
-        pdid = df1.loc[df1['product_name']==dpproduct, 'product_id']
+        find_product = st.selectbox("찾을 물건의 이름",df1.loc[df1['department_id']==dpid, 'product_name'])
+        pdid = df1.loc[df1['product_name']==find_product, 'product_id']
         st.write("선택한 물건의 id는 :", pdid)
+        #st.write(type(find_product))
+        #st.write(type(pdid))
         
         
     with st.sidebar:
         st.header("찾는 물건의 id")
         find_id = st.selectbox("찾을 물건의 id",df1.loc[df1['department_id']==dpid, 'product_id'])
-        find_product =  df1.loc[df1['product_id']==find_id, 'product_name']
-        st.write("선택한 물건의 이름은 :", find_product)
+        pdname =  df1.loc[df1['product_id']==find_id, 'product_name']
+        st.write("선택한 물건의 이름은 :", pdname)
     # filter_pdid=df1.loc[df1['product_id']=='pdid', 'aisle_id']
     # filter_find_product=df1.loc[df1['product_name']=='find_product', 'aisle_id']
     # st.dataframe(filter_pdid)
     # st.dataframe(filter_find_product)
+    st.write('물건 이름에 따른 복도 위치')
+    B=df1.loc[(df1['department_id']==dpid)&(df1['product_name']==find_product), :]
+    # B=df1.loc[(df1['department_id']==dpid)&(df1['product_name']==pdname), :]
+    st.dataframe(B)
+    
     st.write('id에 따른 물건의 복도 위치')
     A=df1.loc[(df1['department_id']==dpid)&(df1['product_id']==find_id) , :]
     st.dataframe(A)
-    st.write('물건 이름에 따른 복도 위치')
-    B=df1.loc[(df1['department_id']==dpid)&(df1['product_name']==dpproduct), :]
-    st.dataframe(B)
-    # & (df1['product_id']==pdid)
  
     
 if __name__ == "__main__":
