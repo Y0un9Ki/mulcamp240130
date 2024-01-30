@@ -1,0 +1,7 @@
+numpy
+pandas
+matplotlib
+seaborn
+plotly
+streamlit
+# pip install -r requirements.txt 텍스트 파일에 있는 라이브러리를 한번에 설치하는 명령어이다!!! 꼭 기억하기  requirements.txt(파일명이다)
